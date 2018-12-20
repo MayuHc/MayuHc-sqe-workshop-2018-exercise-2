@@ -247,17 +247,29 @@ describe('Full flow test with string', () => { it('Full flow - string', () => {
     '}\n';
     let input = '1,2,\'a\'';
     assert.deepEqual(substituteAndColor(code, input),
-        [
-            'let&nbspm;',
-            'function&nbspfoo(x,&nbspy,&nbspz){',
-            '<span style="background-color:#50ff5d">if(z&nbsp+&nbsp\'b\'&nbsp==&nbsp\'ab\'){</span>',
-            'return&nbspx;',
-            '}',
-            '<span style="background-color:#50ff5d">else&nbspif(2&nbsp==&nbsp2){</span>',
-            'return&nbspz;',
-            '}',
-            '}',
-            ''
+        ['let&nbspm;', 'function&nbspfoo(x,&nbspy,&nbspz){', '<span style="background-color:#50ff5d">if(z&nbsp+&nbsp\'b\'&nbsp==&nbsp\'ab\'){</span>',
+            'return&nbspx;', '}', '<span style="background-color:#50ff5d">else&nbspif(2&nbsp==&nbsp2){</span>',
+            'return&nbspz;', '}', '}', ''
+        ]);
+});
+});
+
+describe('Full flow test with parenthesis', () => { it('Full flow - parenthesis', () => {
+    let code = 'function foo(x){\n' +
+    'let a = x + 1;\n'+
+    'let b = a * y;\n'+
+    'let c;\n' +
+    'c = 0;\n' +
+    'while (a < z) {\n'+
+    'c = a + b;\n' +
+    'z = c * 2;\n' +
+    '}\n' +
+    'return z;\n'+
+    '}';
+    let input = '1';
+    assert.deepEqual(substituteAndColor(code, input),
+        ['function&nbspfoo(x){', 'while&nbsp(x&nbsp+&nbsp1&nbsp<&nbspz)&nbsp{',
+            '}', 'return&nbsp(x&nbsp+&nbsp1&nbsp+&nbsp(x&nbsp+&nbsp1)&nbsp*&nbspy)&nbsp*&nbsp2;', '}', ''
         ]);
 });
 });

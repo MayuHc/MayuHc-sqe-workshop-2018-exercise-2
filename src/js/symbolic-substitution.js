@@ -66,8 +66,8 @@ function substituteVariableDeclaration(variableDeclaration, env, codeStr){
             if(init.type === 'ArrayExpression'){
                 addArrayToEnv(init.elements, name, env);
             }
-            codeAfterSymSub = removeLine(codeStr, declaration.loc.start.line - 1);
         }
+        codeAfterSymSub = removeLine(codeStr, declaration.loc.start.line - 1);
     });
     return codeAfterSymSub;
 }

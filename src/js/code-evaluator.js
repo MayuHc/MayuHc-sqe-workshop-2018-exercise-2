@@ -1,4 +1,4 @@
-import {getEnvironmentDeepCopy, substitute,needParens, addArrayToEnv, getExpressionString} from './symbolic-substitution';
+import {getEnvironmentDeepCopy, substitute, addArrayToEnv, getExpressionString} from './symbolic-substitution';
 
 function evaluateCode(code, args, colors){
     let env = {};
@@ -127,12 +127,12 @@ function substituteStr(codeStr, env){
     for(let i=0; i<tokens.length; i++){
         let token = tokens[i];
         if(env[token]){
-            if(needParens(env, tokens, token, i)){
-                tokens[i] = '(' + env[token] + ')';
-            }
-            else{
-                tokens[i] = env[token];
-            }
+            // if(needParens(env, tokens, token, i)){
+            //     tokens[i] = '(' + env[token] + ')';
+            // }
+            // else{
+            tokens[i] = env[token];
+            // }
         }
     }
     return tokens.join(' ');
